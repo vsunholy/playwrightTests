@@ -16,12 +16,17 @@ test.describe('To Do James Tests', () => {
     await page.goto('https://todolist.james.am/#/');
 
     await expect(page).toHaveTitle(/To Do List/);
-    await page.getByText('To Do List');
+    
   })
 
   test('add new item', async ({ page }) => {
-
-
+    await page.locator('input.new-todo').fill('1 uzduotis');
+    await page.keyboard.press('Enter');
+    await page.locator('input.new-todo').fill('2 uzduotis');
+    await page.keyboard.press('Enter');
+    await page.locator('input.new-todo').fill('3 uzduotis');
+    await page.keyboard.press('Enter');
+    await expect(page.getByText('1 uzduotis')).toBeVisible();
   })
   test('delete item', async ({ page }) => {
 
@@ -31,5 +36,8 @@ test.describe('To Do James Tests', () => {
 
 
   })
-
+  test("count", async ({ page }) => {
+    
+    
+  });
 })
